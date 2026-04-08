@@ -28,9 +28,11 @@ export default function Home({
     <div className="min-h-screen bg-[#f3f6f9] font-sans selection:bg-sky-500 selection:text-white">
       {/* 1. HEADER */}
       <header className="bg-white sticky top-0 z-50 border-b border-slate-200 shadow-sm">
-        <div className="max-w-[1400px] mx-auto px-6 py-2 grid grid-cols-[auto_1fr_auto] items-center gap-6">
+        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 py-2
+          flex items-center justify-between
+          lg:grid lg:grid-cols-[auto_1fr_auto] lg:gap-6">
 
-          {/* Logo — smaller to avoid clipping */}
+          {/* Logo — menor no mobile para não cortar */}
           <Link href="/" className="shrink-0 block">
             <Image
               src="/logo-cabecalho.jpg"
@@ -38,11 +40,11 @@ export default function Home({
               width={220}
               height={74}
               priority
-              className="object-contain h-[74px] w-auto mix-blend-multiply contrast-[1.05]"
+              className="object-contain h-[50px] lg:h-[74px] w-auto mix-blend-multiply contrast-[1.05]"
             />
           </Link>
 
-          {/* Nav — centered inside middle column */}
+          {/* Nav — só em lg+ */}
           <nav className="hidden lg:flex justify-center items-center gap-6 xl:gap-10 text-sm font-bold text-slate-500 uppercase tracking-wider">
             <Link href="/" className="hover:text-slate-900 transition-colors whitespace-nowrap">Página Inicial</Link>
             <Link href="/quem-somos" className="hover:text-slate-900 transition-colors whitespace-nowrap">Quem Somos</Link>
@@ -50,11 +52,13 @@ export default function Home({
             <Link href="/contato" className="hover:text-slate-900 transition-colors">Contato</Link>
           </nav>
 
-          {/* Right side — always-visible search + button */}
-          <div className="flex items-center gap-3 justify-end">
-            <HeaderSearch />
+          {/* Direita: busca só em lg+, botão sempre */}
+          <div className="flex items-center gap-2 lg:gap-3">
+            <div className="hidden lg:block">
+              <HeaderSearch />
+            </div>
             <Link href="/contato">
-              <Button className="bg-sky-600 hover:bg-sky-700 text-white rounded-full font-bold px-6 shadow-md shadow-sky-600/20">
+              <Button className="bg-sky-600 hover:bg-sky-700 text-white rounded-full font-bold px-4 lg:px-6 text-sm lg:text-base shadow-md shadow-sky-600/20">
                 Fale Conosco
               </Button>
             </Link>
@@ -100,8 +104,8 @@ export default function Home({
                 </div>
               </div>
 
-              {/* Right: Featured Image */}
-              <div className="relative hidden lg:block overflow-hidden">
+              {/* Right: Featured Image — visível também no mobile */}
+              <div className="relative h-52 lg:h-auto overflow-hidden">
                 {(() => {
                   // gstatic.com images require Google referer — skip them for external use
                   const allImgs = (() => {
