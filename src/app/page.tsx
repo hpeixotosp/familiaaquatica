@@ -9,12 +9,13 @@ import { MobileNav } from "@/components/MobileNav";
 import { ArrowRight, ChevronRight, Clock, Flame, Newspaper, TrendingUp } from "lucide-react";
 import { getAllNews, extractFirstImage, getRelativeDate, TAG_COLORS } from "@/lib/news-utils";
 
-export default function Home({
+export default async function Home({
   searchParams,
 }: {
-  searchParams?: { q?: string };
+  searchParams: Promise<{ q?: string }>;
 }) {
-  const q = (searchParams?.q ?? "").toLowerCase().trim();
+  const { q: rawQ } = await searchParams;
+  const q = (rawQ ?? "").toLowerCase().trim();
   const allNews = getAllNews();
   const news = q
     ? allNews.filter(
