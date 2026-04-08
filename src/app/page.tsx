@@ -5,6 +5,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { CalendarSection } from "@/components/CalendarSection";
 import { HeaderSearch } from "@/components/HeaderSearch";
+import { MobileNav } from "@/components/MobileNav";
 import { ArrowRight, ChevronRight, Clock, Flame, Newspaper, TrendingUp } from "lucide-react";
 import { getAllNews, extractFirstImage, getRelativeDate, TAG_COLORS } from "@/lib/news-utils";
 
@@ -18,7 +19,8 @@ export default function Home({
   const news = q
     ? allNews.filter(
         (item) =>
-          item.title.toLowerCase().includes(q)
+          item.title.toLowerCase().includes(q) ||
+          item.tags.some(tag => tag.toLowerCase().includes(q))
       )
     : allNews;
   const featured = news[0];
@@ -27,12 +29,12 @@ export default function Home({
   return (
     <div className="min-h-screen bg-[#f3f6f9] font-sans selection:bg-sky-500 selection:text-white">
       {/* 1. HEADER */}
-      <header className="bg-white sticky top-0 z-50 border-b border-slate-200 shadow-sm">
+      <header className="bg-white sticky top-0 z-50 border-b border-slate-200 shadow-sm relative">
         <div className="max-w-[1400px] mx-auto px-4 sm:px-6 py-2
           flex items-center justify-between
           lg:grid lg:grid-cols-[auto_1fr_auto] lg:gap-6">
 
-          {/* Logo — menor no mobile para não cortar */}
+          {/* Logo — maior no mobile */}
           <Link href="/" className="shrink-0 block">
             <Image
               src="/logo-cabecalho.jpg"
@@ -40,7 +42,7 @@ export default function Home({
               width={220}
               height={74}
               priority
-              className="object-contain h-[50px] lg:h-[74px] w-auto mix-blend-multiply contrast-[1.05]"
+              className="object-contain h-[62px] lg:h-[74px] w-auto mix-blend-multiply contrast-[1.05]"
             />
           </Link>
 
@@ -52,7 +54,7 @@ export default function Home({
             <Link href="/contato" className="hover:text-slate-900 transition-colors">Contato</Link>
           </nav>
 
-          {/* Direita: busca só em lg+, botão sempre */}
+          {/* Direita: busca só em lg+, botão + hamburger no mobile */}
           <div className="flex items-center gap-2 lg:gap-3">
             <div className="hidden lg:block">
               <HeaderSearch />
@@ -62,6 +64,8 @@ export default function Home({
                 Fale Conosco
               </Button>
             </Link>
+            {/* Hamburger — só mobile */}
+            <MobileNav />
           </div>
 
         </div>
@@ -156,13 +160,15 @@ export default function Home({
            <div className="flex flex-col md:flex-row items-center gap-6 bg-white py-4 px-6 md:px-8 rounded-2xl shadow-sm border border-slate-200">
              <span className="font-heading font-black text-slate-800 uppercase tracking-widest text-sm shrink-0">Explore Rápido</span>
              <div className="h-4 w-px bg-slate-300 hidden md:block" />
-             <div className="flex flex-wrap justify-center md:justify-start gap-2 w-full">
-               {["Copa FINA", "Maria Lenk", "José Finkel", "Universíades", "Clube Pinheiros", "Olimpíadas 2024", "NCAA Americano"].map(tag => (
-                 <Badge key={tag} variant="secondary" className="bg-slate-100 hover:bg-sky-100 hover:text-sky-700 text-slate-600 rounded-full px-4 py-1.5 font-bold transition-colors cursor-pointer border border-transparent">
-                   {tag}
-                 </Badge>
-               ))}
-             </div>
+              <div className="flex flex-wrap justify-center md:justify-start gap-2 w-full">
+                {["Copa FINA", "Maria Lenk", "José Finkel", "Universíades", "Clube Pinheiros", "Olimpíadas 2024", "NCAA Americano"].map(tag => (
+                  <Link key={tag} href={`/?q=${encodeURIComponent(tag)}`}>
+                    <Badge variant="secondary" className="bg-slate-100 hover:bg-sky-100 hover:text-sky-700 text-slate-600 rounded-full px-4 py-1.5 font-bold transition-colors cursor-pointer border border-transparent">
+                      {tag}
+                    </Badge>
+                  </Link>
+                ))}
+              </div>
            </div>
         </div>
 
