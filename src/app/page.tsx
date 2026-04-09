@@ -9,6 +9,8 @@ import { MobileNav } from "@/components/MobileNav";
 import { ArrowRight, ChevronRight, Clock, Flame, Newspaper, TrendingUp } from "lucide-react";
 import { getAllNews, extractFirstImage, getRelativeDate, TAG_COLORS } from "@/lib/news-utils";
 
+export const dynamic = 'force-dynamic';
+
 export default async function Home({
   searchParams,
 }: {
@@ -163,8 +165,8 @@ export default async function Home({
              <div className="h-4 w-px bg-slate-300 hidden md:block" />
               <div className="flex flex-wrap justify-center md:justify-start gap-2 w-full">
                 {["Copa FINA", "Maria Lenk", "José Finkel", "Universíades", "Clube Pinheiros", "Olimpíadas 2024", "NCAA Americano"].map(tag => (
-                  <Link key={tag} href={`/?q=${encodeURIComponent(tag)}`}>
-                    <Badge variant="secondary" className="bg-slate-100 hover:bg-sky-100 hover:text-sky-700 text-slate-600 rounded-full px-4 py-1.5 font-bold transition-colors cursor-pointer border border-transparent">
+                  <Link key={tag} href={`/?q=${encodeURIComponent(tag)}`} className="inline-block touch-manipulation">
+                    <Badge variant="secondary" className="bg-slate-100 hover:bg-sky-100 hover:text-sky-700 text-slate-600 rounded-full px-4 py-1.5 font-bold transition-colors cursor-pointer border border-transparent active:scale-95">
                       {tag}
                     </Badge>
                   </Link>
