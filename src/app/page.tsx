@@ -3,7 +3,7 @@ import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { CalendarSection } from "@/components/CalendarSection";
+// import { CalendarSection } from "@/components/CalendarSection";
 import { HeaderSearch } from "@/components/HeaderSearch";
 import { MobileNav } from "@/components/MobileNav";
 import { ArrowRight, ChevronRight, Clock, Flame, Newspaper, TrendingUp } from "lucide-react";
@@ -226,10 +226,15 @@ export default function Home() {
               <div className="flex items-center gap-3">
                 <h2 className="font-heading text-2xl font-black text-slate-900 tracking-tight">Radar de Competições</h2>
               </div>
-              <div className="bg-slate-900 p-6 md:p-8 rounded-[2rem] shadow-xl border border-slate-800 overflow-hidden relative">
-                <div className="absolute top-0 left-0 w-64 h-64 bg-sky-500/10 rounded-full blur-3xl pointer-events-none" />
-                <CalendarSection />
-              </div>
+              <iframe
+                src="https://calendar.google.com/calendar/embed?src=5c919f0c35f743213982d6524fab9436c1f0fa710e22a67149b3b65d67dddba0%40group.calendar.google.com&ctz=America%2FSao_Paulo"
+                style={{ border: 0 }}
+                width="100%"
+                height="600"
+                frameBorder="0"
+                scrolling="no"
+                className="rounded-2xl shadow-xl"
+              />
             </div>
 
             <div id="em-alta" className="flex flex-col gap-6 scroll-mt-24">
