@@ -6,7 +6,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, Clock, Calendar, Tag } from "lucide-react";
 
-type Props = { params: { slug: string } };
+type Props = { params: Promise<{ slug: string }> };
 
 export const dynamicParams = false;
 
@@ -15,8 +15,8 @@ export function generateStaticParams() {
   return getAllNews().map((post) => ({ slug: post.id }));
 }
 
-export default function NoticiaPage({ params }: Props) {
-  const { slug } = params;
+export default async function NoticiaPage({ params }: Props) {
+  const { slug } = await params;
   console.log('SLUG RECEBIDO:', JSON.stringify(slug));
   console.log('TODOS IDS:', getAllNews().slice(0,3).map(x => x.id));
   const cleanSlug = slug ? slug.replace(/\/$/, '') : '';
