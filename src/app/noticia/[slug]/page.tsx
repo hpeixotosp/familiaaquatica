@@ -18,8 +18,7 @@ export function generateStaticParams() {
 export default function NoticiaPage({ params }: Props) {
   const { slug } = params;
   const post = getNewsById(slug);
-
-  if (!post) notFound();
+  if (!post) return <div>Post não encontrado</div>;
 
   const imageUrl = extractFirstImage(post.content);
   // Remove the first image from content to avoid showing it twice (once as hero, once in text)
