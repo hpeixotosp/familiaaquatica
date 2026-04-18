@@ -17,7 +17,7 @@ export function generateStaticParams() {
 
 export default function NoticiaPage({ params }: Props) {
   const { slug } = params;
-  const post = getNewsById(slug);
+  const post = getNewsById(slug.replace(/\/$/, ''));
   if (!post) return <div>Post não encontrado</div>;
 
   const imageUrl = extractFirstImage(post.content);
