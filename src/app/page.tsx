@@ -28,10 +28,10 @@ export default function Home() {
             <Image
               src="/logo-cabecalho.jpg"
               alt="Família Aquática"
-              width={220}
-              height={74}
+              width={264}
+              height={89}
               priority
-              className="object-contain h-[62px] lg:h-[74px] w-auto mix-blend-multiply contrast-[1.05]"
+              className="object-contain h-[74px] lg:h-[89px] w-auto mix-blend-multiply contrast-[1.05]"
             />
           </Link>
 
@@ -281,9 +281,9 @@ export default function Home() {
               <Image
                 src="/logo-cabecalho.jpg"
                 alt="Família Aquática"
-                width={300}
-                height={100}
-                className="object-contain h-[100px] w-auto mix-blend-multiply contrast-[1.1] scale-[1.3] origin-center [clip-path:inset(3px)]"
+                width={360}
+                height={120}
+                className="object-contain h-[120px] w-auto mix-blend-multiply contrast-[1.1] scale-[1.3] origin-center [clip-path:inset(3px)]"
               />
               <p className="text-slate-500 font-semibold leading-relaxed mt-2 text-justify">
                 O maior portal e acervo de coberturas e opiniões sinceras sobre o ecossistema da Natação Nacional e Internacional.

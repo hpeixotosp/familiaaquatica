@@ -16,12 +16,12 @@ export default function QuemSomosPage() {
       <header className="bg-white sticky top-0 z-50 border-b border-slate-200 shadow-sm">
         <div className="max-w-[1200px] mx-auto px-6 py-2 flex items-center justify-between">
           <Link href="/" aria-label="Voltar à home">
-            <div className="relative h-[72px] w-[240px] shrink-0">
+            <div className="relative h-[86px] w-[288px] shrink-0">
               <Image
                 src="/logo-cabecalho.jpg"
                 alt="Família Aquática"
                 fill
-                sizes="240px"
+                sizes="288px"
                 priority
                 className="object-contain object-left mix-blend-multiply contrast-[1.1] scale-[1.25] origin-left [clip-path:inset(4px)]"
               />
