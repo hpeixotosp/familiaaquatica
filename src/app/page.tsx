@@ -9,20 +9,9 @@ import { MobileNav } from "@/components/MobileNav";
 import { ArrowRight, ChevronRight, Clock, Flame, Newspaper, TrendingUp } from "lucide-react";
 import { getAllNews, extractFirstImage, getRelativeDate, TAG_COLORS } from "@/lib/news-utils";
 
-export default function Home({
-  searchParams,
-}: {
-  searchParams: { q?: string };
-}) {
-  const q = (searchParams.q ?? "").toLowerCase().trim();
+export default function Home() {
   const allNews = getAllNews();
-  const news = q
-    ? allNews.filter(
-      (item) =>
-        item.title.toLowerCase().includes(q) ||
-        item.tags.some(tag => tag.toLowerCase().includes(q))
-    )
-    : allNews;
+  const news = allNews;
   const featured = news[0];
   const recentCards = news.slice(0, 4);
   const trending = news.slice(4, 8);
