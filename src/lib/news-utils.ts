@@ -71,3 +71,33 @@ export function extractFirstImage(html: string): string | null {
   }
   return candidates[0] || null;
 }
+
+export const TAG_COLORS: Record<string, string> = {
+  default: "bg-blue-100 text-blue-800",
+};
+
+export function formatDate(dateString: string): string {
+  const date = new Date(dateString);
+  return date.toLocaleDateString("pt-BR", {
+    day: "2-digit",
+    month: "long",
+    year: "numeric",
+  });
+}
+
+export function getRelativeDate(dateString: string): string {
+  const date = new Date(dateString);
+  const now = new Date();
+  const diffMs = now.getTime() - date.getTime();
+  const diffDays = Math.floor(diffMs / (1000 * 60 * 60 * 24));
+  if (diffDays === 0) return "Hoje";
+  if (diffDays === 1) return "Ontem";
+  if (diffDays < 7) return `${diffDays} dias atrás`;
+  if (diffDays < 30) return `${Math.floor(diffDays / 7)} semanas atrás`;
+  if (diffDays < 365) return `${Math.floor(diffDays / 30)} meses atrás`;
+  return `${Math.floor(diffDays / 365)} anos atrás`;
+}
+
+export function stripFirstImageBlock(html: string): string {
+  return html.replace(/<img[^>]*>/, "").trim();
+}
