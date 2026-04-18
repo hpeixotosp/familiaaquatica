@@ -8,6 +8,8 @@ import { ArrowLeft, Clock, Calendar, Tag } from "lucide-react";
 
 type Props = { params: { slug: string } };
 
+export const dynamicParams = false;
+
 // Required for output: "export" — generates static pages for all posts
 export function generateStaticParams() {
   return getAllNews().map((post) => ({ slug: post.id }));
