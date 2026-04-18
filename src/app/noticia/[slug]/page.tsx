@@ -33,9 +33,19 @@ export default async function NoticiaPage({ params }: Props) {
     .slice(0, 3);
 
   return (
-    <div className="min-h-screen bg-[#f3f6f9] font-sans">
+    <div className="min-h-screen font-sans relative" style={{ backgroundColor: '#f3f6f9' }}>
+      <div
+        className="fixed inset-0 z-0 pointer-events-none"
+        style={{
+          backgroundImage: "url('/hero-swimming.png')",
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundRepeat: 'no-repeat',
+          opacity: 0.08,
+        }}
+      />
       {/* Header */}
-      <header className="bg-white sticky top-0 z-50 border-b border-slate-200 shadow-sm">
+      <header className="bg-white sticky top-0 z-50 border-b border-slate-200 shadow-sm relative">
         <div className="max-w-[1200px] mx-auto px-6 py-2 flex items-center justify-between">
           <Link href="/" className="flex items-center gap-0 group" aria-label="Voltar à home">
             {/* Logo — same treatment as main header */}
@@ -60,7 +70,7 @@ export default async function NoticiaPage({ params }: Props) {
       </header>
 
       {/* Article */}
-      <main className="max-w-[860px] mx-auto px-6 py-12">
+      <main className="max-w-[860px] mx-auto px-6 py-12 relative z-10">
 
         {/* Tags */}
         {usefulTags.length > 0 && (
