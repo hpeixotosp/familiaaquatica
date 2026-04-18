@@ -17,6 +17,8 @@ export function generateStaticParams() {
 
 export default function NoticiaPage({ params }: Props) {
   const { slug } = params;
+  console.log('SLUG RECEBIDO:', JSON.stringify(slug));
+  console.log('TODOS IDS:', getAllNews().slice(0,3).map(x => x.id));
   const cleanSlug = slug ? slug.replace(/\/$/, '') : '';
   const post = getNewsById(cleanSlug);
   if (!post) return <div>Post não encontrado</div>;
