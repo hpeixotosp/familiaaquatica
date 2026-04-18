@@ -6,15 +6,15 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, Clock, Calendar, Tag } from "lucide-react";
 
-type Props = { params: Promise<{ slug: string }> };
+type Props = { params: { slug: string } };
 
 // Required for output: "export" — generates static pages for all posts
 export function generateStaticParams() {
   return getAllNews().map((post) => ({ slug: post.id }));
 }
 
-export default async function NoticiaPage({ params }: Props) {
-  const { slug } = await params;
+export default function NoticiaPage({ params }: Props) {
+  const { slug } = params;
   const post = getNewsById(slug);
 
   if (!post) notFound();
