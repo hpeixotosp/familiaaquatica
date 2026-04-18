@@ -72,9 +72,14 @@ export function extractFirstImage(html: string): string | null {
   return candidates[0] || null;
 }
 
-export const TAG_COLORS: Record<string, string> = {
-  default: "bg-blue-100 text-blue-800",
-};
+export const TAG_COLORS: string[] = [
+  "bg-blue-100 text-blue-800",
+  "bg-green-100 text-green-800",
+  "bg-purple-100 text-purple-800",
+  "bg-orange-100 text-orange-800",
+  "bg-pink-100 text-pink-800",
+  "bg-teal-100 text-teal-800",
+];
 
 export function formatDate(dateString: string): string {
   const date = new Date(dateString);
