@@ -9,8 +9,6 @@ import { MobileNav } from "@/components/MobileNav";
 import { ArrowRight, ChevronRight, Clock, Flame, Newspaper, TrendingUp } from "lucide-react";
 import { getAllNews, extractFirstImage, getRelativeDate, TAG_COLORS } from "@/lib/news-utils";
 
-export const dynamic = 'force-dynamic';
-
 export default async function Home({
   searchParams,
 }: {
@@ -21,10 +19,10 @@ export default async function Home({
   const allNews = getAllNews();
   const news = q
     ? allNews.filter(
-        (item) =>
-          item.title.toLowerCase().includes(q) ||
-          item.tags.some(tag => tag.toLowerCase().includes(q))
-      )
+      (item) =>
+        item.title.toLowerCase().includes(q) ||
+        item.tags.some(tag => tag.toLowerCase().includes(q))
+    )
     : allNews;
   const featured = news[0];
   const recentCards = news.slice(0, 4);
@@ -160,19 +158,19 @@ export default async function Home({
 
         {/* 3. TRENDING TAGS ROW - Substitui o "Explore" enorme solto */}
         <div className="w-full max-w-[1400px] mx-auto px-6">
-           <div className="flex flex-col md:flex-row items-center gap-6 bg-white py-4 px-6 md:px-8 rounded-2xl shadow-sm border border-slate-200">
-             <span className="font-heading font-black text-slate-800 uppercase tracking-widest text-sm shrink-0">Explore Rápido</span>
-             <div className="h-4 w-px bg-slate-300 hidden md:block" />
-              <div className="flex flex-wrap justify-center md:justify-start gap-2 w-full">
-                {["Copa FINA", "Maria Lenk", "José Finkel", "Universíades", "Clube Pinheiros", "Olimpíadas 2024", "NCAA Americano"].map(tag => (
-                  <Link key={tag} href={`/?q=${encodeURIComponent(tag)}`} className="inline-block touch-manipulation">
-                    <Badge variant="secondary" className="bg-slate-100 hover:bg-sky-100 hover:text-sky-700 text-slate-600 rounded-full px-4 py-1.5 font-bold transition-colors cursor-pointer border border-transparent active:scale-95">
-                      {tag}
-                    </Badge>
-                  </Link>
-                ))}
-              </div>
-           </div>
+          <div className="flex flex-col md:flex-row items-center gap-6 bg-white py-4 px-6 md:px-8 rounded-2xl shadow-sm border border-slate-200">
+            <span className="font-heading font-black text-slate-800 uppercase tracking-widest text-sm shrink-0">Explore Rápido</span>
+            <div className="h-4 w-px bg-slate-300 hidden md:block" />
+            <div className="flex flex-wrap justify-center md:justify-start gap-2 w-full">
+              {["Copa FINA", "Maria Lenk", "José Finkel", "Universíades", "Clube Pinheiros", "Olimpíadas 2024", "NCAA Americano"].map(tag => (
+                <Link key={tag} href={`/?q=${encodeURIComponent(tag)}`} className="inline-block touch-manipulation">
+                  <Badge variant="secondary" className="bg-slate-100 hover:bg-sky-100 hover:text-sky-700 text-slate-600 rounded-full px-4 py-1.5 font-bold transition-colors cursor-pointer border border-transparent active:scale-95">
+                    {tag}
+                  </Badge>
+                </Link>
+              ))}
+            </div>
+          </div>
         </div>
 
         {/* 4. MAIN CONTENT GRID (Tight Columns) */}
@@ -235,10 +233,10 @@ export default async function Home({
         {/* 5. BOTTOM SECTION: Calendar vs Top Lidas (50/50 Split para evitar vazios) */}
         <section className="w-full max-w-[1400px] mx-auto px-6 mt-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
-            
+
             <div className="flex flex-col gap-6">
               <div className="flex items-center gap-3">
-                 <h2 className="font-heading text-2xl font-black text-slate-900 tracking-tight">Radar de Competições</h2>
+                <h2 className="font-heading text-2xl font-black text-slate-900 tracking-tight">Radar de Competições</h2>
               </div>
               <div className="bg-slate-900 p-6 md:p-8 rounded-[2rem] shadow-xl border border-slate-800 overflow-hidden relative">
                 <div className="absolute top-0 left-0 w-64 h-64 bg-sky-500/10 rounded-full blur-3xl pointer-events-none" />
@@ -248,30 +246,30 @@ export default async function Home({
 
             <div id="em-alta" className="flex flex-col gap-6 scroll-mt-24">
               <div className="flex items-center gap-3">
-                 <TrendingUp className="w-6 h-6 text-amber-500" />
-                 <h2 className="font-heading text-2xl font-black text-slate-900 tracking-tight">Em Alta na Semana</h2>
+                <TrendingUp className="w-6 h-6 text-amber-500" />
+                <h2 className="font-heading text-2xl font-black text-slate-900 tracking-tight">Em Alta na Semana</h2>
               </div>
               <div className="bg-slate-900 p-8 rounded-[2rem] border border-slate-800 shadow-xl overflow-hidden relative">
-                 <div className="absolute top-0 right-0 w-64 h-64 bg-sky-500/10 rounded-full blur-3xl pointer-events-none" />
-                 <ul className="space-y-6 relative z-10">
-                   {trending.map((item, idx) => (
-                     <li key={item.id} className="group relative border-b border-slate-800 pb-6 last:border-0 last:pb-0">
-                       <Link href={`/noticia/${item.id}`} className="flex items-start gap-5">
-                         <span className="font-mono font-black text-2xl text-amber-500/30 group-hover:text-amber-400 transition-colors select-none">
-                           0{idx + 1}
-                         </span>
-                         <div>
-                           <span className="font-heading font-bold text-slate-300 group-hover:text-amber-400 transition-colors leading-snug text-lg block">
-                             {item.title}
-                           </span>
-                           <span className="text-xs text-slate-500 font-semibold uppercase tracking-widest mt-2 block">
-                             <Clock className="w-3 h-3 inline mr-1 -mt-0.5" /> {getRelativeDate(item.published)}
-                           </span>
-                         </div>
-                       </Link>
-                     </li>
-                   ))}
-                 </ul>
+                <div className="absolute top-0 right-0 w-64 h-64 bg-sky-500/10 rounded-full blur-3xl pointer-events-none" />
+                <ul className="space-y-6 relative z-10">
+                  {trending.map((item, idx) => (
+                    <li key={item.id} className="group relative border-b border-slate-800 pb-6 last:border-0 last:pb-0">
+                      <Link href={`/noticia/${item.id}`} className="flex items-start gap-5">
+                        <span className="font-mono font-black text-2xl text-amber-500/30 group-hover:text-amber-400 transition-colors select-none">
+                          0{idx + 1}
+                        </span>
+                        <div>
+                          <span className="font-heading font-bold text-slate-300 group-hover:text-amber-400 transition-colors leading-snug text-lg block">
+                            {item.title}
+                          </span>
+                          <span className="text-xs text-slate-500 font-semibold uppercase tracking-widest mt-2 block">
+                            <Clock className="w-3 h-3 inline mr-1 -mt-0.5" /> {getRelativeDate(item.published)}
+                          </span>
+                        </div>
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
               </div>
             </div>
 
@@ -283,61 +281,61 @@ export default async function Home({
       {/* 6. FOOTER - Maximum Alignment */}
       <footer className="bg-white border-t border-slate-200 pt-16 pb-8">
         <div className="max-w-[1400px] mx-auto px-6">
-           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8 mb-16">
-             
-             {/* Logo Column */}
-             <div className="flex flex-col items-center gap-4">
-                <Image
-                  src="/logo-cabecalho.jpg"
-                  alt="Família Aquática"
-                  width={300}
-                  height={100}
-                  className="object-contain h-[100px] w-auto mix-blend-multiply contrast-[1.1] scale-[1.3] origin-center [clip-path:inset(3px)]"
-                />
-                <p className="text-slate-500 font-semibold leading-relaxed mt-2 text-justify">
-                  O maior portal e acervo de coberturas e opiniões sinceras sobre o ecossistema da Natação Nacional e Internacional.
-                </p>
-             </div>
-             
-             {/* Navigation */}
-             <div className="flex flex-col gap-4 lg:pl-8">
-                 <h4 className="font-heading font-black text-slate-900 text-sm uppercase tracking-[0.2em] mb-2 border-b-2 border-sky-500 pb-2 inline-block w-fit">Navegação</h4>
-                 <a href="#" className="font-semibold text-slate-500 hover:text-sky-600 transition-colors">Página Inicial</a>
-                 <a href="#" className="font-semibold text-slate-500 hover:text-sky-600 transition-colors">Últimas Notícias</a>
-                 <a href="#" className="font-semibold text-slate-500 hover:text-sky-600 transition-colors">Calendário Oficial</a>
-                 <a href="#" className="font-semibold text-slate-500 hover:text-sky-600 transition-colors">Artigos de Opinião</a>
-             </div>
-               
-             {/* Suporte */}
-             <div className="flex flex-col gap-4">
-                 <h4 className="font-heading font-black text-slate-900 text-sm uppercase tracking-[0.2em] mb-2 border-b-2 border-sky-500 pb-2 inline-block w-fit">Suporte</h4>
-                 <a href="#" className="font-semibold text-slate-500 hover:text-sky-600 transition-colors">Fale Conosco</a>
-                 <a href="#" className="font-semibold text-slate-500 hover:text-sky-600 transition-colors">Time Editorial</a>
-                 <a href="#" className="font-semibold text-slate-500 hover:text-sky-600 transition-colors">Parcerias de Evento</a>
-                 <a href="#" className="font-semibold text-slate-500 hover:text-sky-600 transition-colors">Anuncie Conosco</a>
-             </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8 mb-16">
 
-             {/* Fique por dentro */}
-             <div className="flex flex-col gap-4">
-                 <h4 className="font-heading font-black text-slate-900 text-sm uppercase tracking-[0.2em] mb-2 border-b-2 border-sky-500 pb-2 inline-block w-fit">Fator Água</h4>
-                 <p className="text-slate-500 font-medium text-sm">Sua dose semanal de braçadas limpas direto na caixa de entrada.</p>
-                 <div className="flex mt-1">
-                    <input type="email" placeholder="Seu melhor e-mail..." className="bg-slate-100 border border-slate-200 text-slate-700 text-sm rounded-l-xl px-4 py-3 w-full focus:outline-none focus:border-sky-500 transition-colors" />
-                    <button className="bg-sky-600 hover:bg-sky-700 text-white px-5 rounded-r-xl transition-colors flex items-center justify-center">
-                      <ArrowRight className="w-5 h-5" />
-                    </button>
-                 </div>
-             </div>
-             
-           </div>
-           
-           <div className="bg-slate-100 rounded-2xl p-6 flex flex-col sm:flex-row items-center justify-between text-slate-500 font-bold text-xs uppercase tracking-widest gap-4">
-              <span>© {new Date().getFullYear()} Família Aquática.</span>
-              <div className="flex gap-6">
-                <a href="#" className="hover:text-slate-900 transition-colors">Privacidade</a>
-                <a href="#" className="hover:text-slate-900 transition-colors">Termos de Uso</a>
+            {/* Logo Column */}
+            <div className="flex flex-col items-center gap-4">
+              <Image
+                src="/logo-cabecalho.jpg"
+                alt="Família Aquática"
+                width={300}
+                height={100}
+                className="object-contain h-[100px] w-auto mix-blend-multiply contrast-[1.1] scale-[1.3] origin-center [clip-path:inset(3px)]"
+              />
+              <p className="text-slate-500 font-semibold leading-relaxed mt-2 text-justify">
+                O maior portal e acervo de coberturas e opiniões sinceras sobre o ecossistema da Natação Nacional e Internacional.
+              </p>
+            </div>
+
+            {/* Navigation */}
+            <div className="flex flex-col gap-4 lg:pl-8">
+              <h4 className="font-heading font-black text-slate-900 text-sm uppercase tracking-[0.2em] mb-2 border-b-2 border-sky-500 pb-2 inline-block w-fit">Navegação</h4>
+              <a href="#" className="font-semibold text-slate-500 hover:text-sky-600 transition-colors">Página Inicial</a>
+              <a href="#" className="font-semibold text-slate-500 hover:text-sky-600 transition-colors">Últimas Notícias</a>
+              <a href="#" className="font-semibold text-slate-500 hover:text-sky-600 transition-colors">Calendário Oficial</a>
+              <a href="#" className="font-semibold text-slate-500 hover:text-sky-600 transition-colors">Artigos de Opinião</a>
+            </div>
+
+            {/* Suporte */}
+            <div className="flex flex-col gap-4">
+              <h4 className="font-heading font-black text-slate-900 text-sm uppercase tracking-[0.2em] mb-2 border-b-2 border-sky-500 pb-2 inline-block w-fit">Suporte</h4>
+              <a href="#" className="font-semibold text-slate-500 hover:text-sky-600 transition-colors">Fale Conosco</a>
+              <a href="#" className="font-semibold text-slate-500 hover:text-sky-600 transition-colors">Time Editorial</a>
+              <a href="#" className="font-semibold text-slate-500 hover:text-sky-600 transition-colors">Parcerias de Evento</a>
+              <a href="#" className="font-semibold text-slate-500 hover:text-sky-600 transition-colors">Anuncie Conosco</a>
+            </div>
+
+            {/* Fique por dentro */}
+            <div className="flex flex-col gap-4">
+              <h4 className="font-heading font-black text-slate-900 text-sm uppercase tracking-[0.2em] mb-2 border-b-2 border-sky-500 pb-2 inline-block w-fit">Fator Água</h4>
+              <p className="text-slate-500 font-medium text-sm">Sua dose semanal de braçadas limpas direto na caixa de entrada.</p>
+              <div className="flex mt-1">
+                <input type="email" placeholder="Seu melhor e-mail..." className="bg-slate-100 border border-slate-200 text-slate-700 text-sm rounded-l-xl px-4 py-3 w-full focus:outline-none focus:border-sky-500 transition-colors" />
+                <button className="bg-sky-600 hover:bg-sky-700 text-white px-5 rounded-r-xl transition-colors flex items-center justify-center">
+                  <ArrowRight className="w-5 h-5" />
+                </button>
               </div>
-           </div>
+            </div>
+
+          </div>
+
+          <div className="bg-slate-100 rounded-2xl p-6 flex flex-col sm:flex-row items-center justify-between text-slate-500 font-bold text-xs uppercase tracking-widest gap-4">
+            <span>© {new Date().getFullYear()} Família Aquática.</span>
+            <div className="flex gap-6">
+              <a href="#" className="hover:text-slate-900 transition-colors">Privacidade</a>
+              <a href="#" className="hover:text-slate-900 transition-colors">Termos de Uso</a>
+            </div>
+          </div>
         </div>
       </footer>
     </div>
