@@ -2,7 +2,7 @@ const fs = require('fs');
 const xml2js = require('xml2js');
 const path = require('path');
 
-const BLOGGER_FEED_URL = 'http://www.familaquatica.net/feeds/posts/default?alt=atom&max-results=500';
+const BLOGGER_FEED_URL = 'https://www.blogger.com/feeds/6103872988994054072/posts/default?alt=atom&max-results=500';
 
 async function fetchFeed(url) {
   const response = await fetch(url);
